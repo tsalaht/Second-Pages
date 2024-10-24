@@ -35,16 +35,16 @@ import { useDispatch } from 'react-redux';
 export default function Community() {
   const { width, height } = Dimensions.get("window");
   const dispatch = useDispatch();
-  const [type, setType] = useState("المتواجدون");
+  const [type, setType] = useState("دوريات عامة");
   const [selectedMonth, setSelectedMonth] = useState("الشهر الحالي");
   const [selectedWeek, setSelectedWeek] = useState<any>("الاسبوع الماضي");
   const renderContent = () => {
     switch (type) {
-      case "المتواجدون":
+      case "دوريات عامة":
         return <Users />;
-      case "الدوريات":
+      case "دوريات قيد":
         return <Champions />;
-      case "المتصدرون":
+      case "دوريات خاصة":
         return <Leaderboard />;
       default:
         return null;
@@ -52,7 +52,7 @@ export default function Community() {
   };
   const renderContent2 = () => {
     switch (type) {
-      case "المتواجدون":
+      case "دوريات عامة":
         return (
           <View
             style={{
@@ -108,7 +108,7 @@ export default function Community() {
             </View>
           </View>
         );
-      case "الدوريات":
+      case "دوريات قيد":
         return (
           <View style={{ paddingHorizontal: 12, width: "100%" }}>
             <View
@@ -161,7 +161,7 @@ export default function Community() {
             </View>
           </View>
         );
-      case "المتصدرون":
+      case "دوريات خاصة":
         return (
           <View style={{ width: "100%", paddingHorizontal: 16 }}>
             <View
@@ -174,55 +174,17 @@ export default function Community() {
                 borderRadius: 16,
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent: "center",
               }}
             >
-              <Pressable onPress={() => setSelectedWeek("الترتيب العام")}>
+      
+              <Pressable style={{width:'100%', alignItems: "center",
+                justifyContent: "center",}} >
                 <View
-                  style={[
-                    styl.tab,
-                    selectedWeek === "الترتيب العام" && styl.selectedTab,
-                  ]}
+               style={{width:'100%',backgroundColor:Colors.PRIMARY_600,alignItems: "center",
+                justifyContent: "center",}}
                 >
                   <Text
-                    style={[
-                      styl.tabText,
-                      selectedWeek === "الترتيب العام" && styl.selectedTabText,
-                    ]}
-                  >
-                    المتصدرون
-                  </Text>
-                </View>
-              </Pressable>
-              <Pressable onPress={() => setSelectedWeek("الشهر الماضي")}>
-                <View
-                  style={[
-                    styl.tab,
-                    selectedWeek === "الشهر الماضي" && styl.selectedTab,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styl.tabText,
-                      selectedWeek === "الشهر الماضي" && styl.selectedTabText,
-                    ]}
-                  >
-                    الشهر الماضي
-                  </Text>
-                </View>
-              </Pressable>
-              <Pressable onPress={() => setSelectedWeek("الاسبوع الماضي")}>
-                <View
-                  style={[
-                    styl.tab,
-                    selectedWeek === "الاسبوع الماضي" && styl.selectedTab,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styl.tabText,
-                      selectedWeek === "الاسبوع الماضي" && styl.selectedTabText,
-                    ]}
                   >
                     الاسبوع الماضي
                   </Text>
@@ -290,7 +252,7 @@ export default function Community() {
             style={{
               width: "100%",
               flexDirection: "row",
-              paddingVertical: 30,
+              paddingVertical: 20,
               alignItems: "center",
               justifyContent: "space-between",
               paddingHorizontal: 32,
@@ -298,7 +260,7 @@ export default function Community() {
           >
             <View></View>
             <View style={shadow.container}>
-              <Text style={shadow.text}>المجتمع</Text>
+              <Text style={shadow.text}>الدوريات</Text>
             </View>
 
             <View
@@ -322,7 +284,7 @@ export default function Community() {
         <View
           style={{
             paddingHorizontal: width * 0.04,
-            marginTop: 8,
+            // marginTop: 2,
             flex: 1,
             overflow: "hidden",
           }}
@@ -340,43 +302,43 @@ export default function Community() {
               justifyContent: "space-between",
             }}
           >
-            <Pressable onPress={() => setType("المتصدرون")}>
+            <Pressable onPress={() => setType("دوريات خاصة")}>
               <View
-                style={[styl.tab, type === "المتصدرون" && styl.selectedTab]}
+                style={[styl.tab, type === "دوريات خاصة" && styl.selectedTab]}
               >
                 <Text
                   style={[
                     styl.tabText,
-                    type === "المتصدرون" && styl.selectedTabText,
+                    type === "دوريات خاصة" && styl.selectedTabText,
                   ]}
                 >
-                  المتصدرون
+                  دوريات خاصة
                 </Text>
               </View>
             </Pressable>
-            <Pressable onPress={() => setType("الدوريات")}>
-              <View style={[styl.tab, type === "الدوريات" && styl.selectedTab]}>
+            <Pressable onPress={() => setType("دوريات قيد")}>
+              <View style={[styl.tab, type === "دوريات قيد" && styl.selectedTab]}>
                 <Text
                   style={[
                     styl.tabText,
-                    type === "الدوريات" && styl.selectedTabText,
+                    type === "دوريات قيد" && styl.selectedTabText,
                   ]}
                 >
-                  الدوريات
+                  دوريات قيد
                 </Text>
               </View>
             </Pressable>
-            <Pressable onPress={() => setType("المتواجدون")}>
+            <Pressable onPress={() => setType("دوريات عامة")}>
               <View
-                style={[styl.tab, type === "المتواجدون" && styl.selectedTab]}
+                style={[styl.tab, type === "دوريات عامة" && styl.selectedTab]}
               >
                 <Text
                   style={[
                     styl.tabText,
-                    type === "المتواجدون" && styl.selectedTabText,
+                    type === "دوريات عامة" && styl.selectedTabText,
                   ]}
                 >
-                  المتواجدون
+                  دوريات عامة
                 </Text>
               </View>
             </Pressable>
@@ -428,8 +390,7 @@ export default function Community() {
                       color: "white",
                       fontFamily: fonts.almaraiRegular,
                       fontSize: 12,
-                    }}
-                  >
+                    }}>
                     المجتمع
                   </Text>
                 </View>
@@ -462,7 +423,7 @@ export default function Community() {
                       fontSize: 12,
                     }}
                   >
-                    الدوريات
+                    دوريات قيد
                   </Text>
                 </View>
               </Pressable>
@@ -476,6 +437,7 @@ export default function Community() {
                       color: "white",
                       fontFamily: fonts.almaraiRegular,
                       fontSize: 12,
+                  
                     }}
                   >
                     الدردشة

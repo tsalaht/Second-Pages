@@ -14,7 +14,6 @@ import React, { useState } from "react";
 import { BlurView } from "expo-blur";
 import eagl from "../assets/Ellipse 1.png";
 import { ArrowRight2 } from "iconsax-react-native";
-
 import { SvgXml } from "react-native-svg";
 import { svgs } from "./svg";
 import { icons } from "./icons";
