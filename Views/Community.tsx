@@ -182,11 +182,12 @@ export default function Community() {
                 justifyContent: "center",}} >
                 <View
                style={{width:'100%',backgroundColor:Colors.PRIMARY_600,alignItems: "center",
-                justifyContent: "center",}}
+                justifyContent: "center", paddingVertical:12, borderRadius:12}}
                 >
                   <Text
+                  style={{color:"white", fontSize:14, fontFamily:fonts.almaraiRegular}}
                   >
-                    الاسبوع الماضي
+                    إنشاء دوري
                   </Text>
                 </View>
               </Pressable>
