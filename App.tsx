@@ -1,15 +1,11 @@
 import React, { createContext, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import MyProfil from "./Views/MyProfil";
 import { useFonts } from "expo-font";
-import Community from "./Views/Community";
-import Chat from "./Views/Chat";
-import HonorablePeople from "./Views/HonorablePeople";
-import Review from "./Views/Review";
-import Distribution from "./Views/Distribution";
-const FontContext = createContext(false);
+import League from "./Views/League";
+import Detials from "./Views/Detials";
 import { Provider } from "react-redux";
+const FontContext = createContext(false);
 import { store } from "./Store/store";
 
 export const useFont = () => useContext(FontContext);
@@ -30,12 +26,8 @@ export default function App() {
       <FontContext.Provider value={fontsLoaded}>
         <View style={styles.container}>
           <StatusBar style="auto" />
-          {/* <HonorablePeople/> */}
-          {/* <MyProfil /> */}
-          <Community/>
-          {/* <Chat/> */}
-          {/* <Review/> */}
-          {/* <Distribution /> */}
+          <League/>
+          {/* <Detials /> */}
         </View>
       </FontContext.Provider>
     </Provider>

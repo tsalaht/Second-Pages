@@ -31,8 +31,9 @@ import Champions from "../Components/Champions";
 import Leaderboard from "../Components/Leaderboard";
 import { setActiveComponent } from "../Store/navigationSlice";
 import { useDispatch } from 'react-redux';
+import { icons } from "./icons";
 
-export default function Community() {
+export default function League() {
   const { width, height } = Dimensions.get("window");
   const dispatch = useDispatch();
   const [type, setType] = useState("دوريات عامة");
@@ -63,49 +64,7 @@ export default function Community() {
               flexDirection: "row",
             }}
           >
-            <View style={styl.container1}>
-              <Text
-                style={{
-                  color: "#9C9FA6",
-                  fontFamily: fonts.almaraiRegular,
-                  fontSize: 12,
-                }}
-              >
-                لاعب متواجد هنا
-              </Text>
-              <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 2 }}
-              >
-                <Text
-                  style={{
-                    color: Colors.DEFAULT_WHITE,
-                    fontFamily: fonts.almaraiBold,
-                    fontSize: 15,
-                  }}
-                >
-                  1500
-                </Text>
-                <View
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: 50,
-                    backgroundColor: Colors.SUCCESS_600,
-                  }}
-                ></View>
-              </View>
-            </View>
-            <View style={styl.container2}>
-              <Text
-                style={{
-                  color: "white",
-                  fontFamily: fonts.almaraiRegular,
-                  fontSize: 14,
-                }}
-              >
-                الخادم 1
-              </Text>
-            </View>
+
           </View>
         );
       case "دوريات قيد":
@@ -119,45 +78,53 @@ export default function Community() {
                 zIndex: 8,
                 marginTop: 8,
                 borderRadius: 16,
-                flexDirection: "row",
+                flexDirection: 'row-reverse',
                 alignItems: "center",
                 justifyContent: "space-between",
               }}
             >
-              <Pressable onPress={() => setSelectedMonth("الشهر الحالي")}>
-                <View
-                  style={[
-                    styl.tab2,
-                    selectedMonth === "الشهر الحالي" && styl.selectedTab,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styl.tabText,
-                      selectedMonth === "الشهر الحالي" && styl.selectedTabText,
-                    ]}
-                  >
-                    الشهر الحالي
-                  </Text>
+              <View style={styl.rowContainer1}>
+                <View style={{position:'relative',right:0,top:-5}}>
+
+              <SvgXml xml={icons[0].eaglCart}/>
+              <View style={{backgroundColor:'#C0C0C0',borderRadius:10.52,paddingHorizontal:10.07,paddingVertical:2,position:'absolute',bottom:-5}}>
+<Text style={{fontSize:4.4,fontFamily:fonts.almaraiBold}}>
+متوسط
+</Text>
+              </View>
                 </View>
-              </Pressable>
-              <Pressable onPress={() => setSelectedMonth("الشهر الماضي")}>
-                <View
-                  style={[
-                    styl.tab2,
-                    selectedMonth === "الشهر الماضي" && styl.selectedTab,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styl.tabText,
-                      selectedMonth === "الشهر الماضي" && styl.selectedTabText,
-                    ]}
-                  >
-                    الشهر الماضي
-                  </Text>
+                <View style={{alignItems:'center',marginRight:10}}>
+<Text style={{fontFamily:fonts.almaraiRegular,fontSize:8,color:'white'}}>
+نقاط الدوري
+</Text>
+<View style={{flexDirection:'row-reverse',alignItems:'center',paddingHorizontal:12,backgroundColor:Colors.BACKGROUND_5,borderRadius:12,marginTop:4}}>
+<SvgXml xml={icons[0].start2}/>
+<Text style={{fontFamily:fonts.almaraiRegular,fontSize:10,color:'white',justifyContent:'center'}}>
+0
+</Text>
+</View>
                 </View>
-              </Pressable>
+                <View style={{alignItems:'center',marginRight:10}}>
+<Text style={{fontFamily:fonts.almaraiRegular,fontSize:8,color:'white'}}>
+المحاولات
+</Text>
+<View style={{flexDirection:'row-reverse',alignItems:'center',padding:5,backgroundColor:Colors.BACKGROUND_5,borderRadius:12,marginTop:4}}>
+<SvgXml xml={icons[0].heart}/>
+<SvgXml xml={icons[0].heart}/>
+<SvgXml xml={icons[0].heart}/>
+
+</View>
+                </View>
+                <Text style={{fontFamily:fonts.almaraiRegular,fontSize:8,color:'white',marginHorizontal:8}}>
+                غير مؤهل لأي بطولة
+                </Text>
+              </View>
+              <View style={{paddingHorizontal:16,backgroundColor:'white',paddingVertical:12,borderRadius:12}}>
+                <Text style={{color:Colors.BACKGROUND_5,fontFamily:fonts.almaraiBold,fontSize:10}}>
+                المتصدرون
+                </Text>
+              
+              </View>
             </View>
           </View>
         );
@@ -205,7 +172,7 @@ export default function Community() {
       backgroundColor: Colors.NEUTRALS,
       borderRadius: 8,
       shadowColor: "#0000004D",
-      marginLeft: 45,
+      // marginLeft: 45,
       shadowOffset: {
         width: 4,
         height: 4,
@@ -259,7 +226,21 @@ export default function Community() {
               paddingHorizontal: 32,
             }}
           >
-            <View></View>
+              <View
+              style={{
+                flexDirection: "row",
+                backgroundColor: Colors.BACKGROUND_5,
+                borderRadius: 16,
+                alignItems: "center",
+                padding: 12,
+                gap: 4,
+              }}
+            >
+              <Text style={{ color: Colors.BACKGROUND_3, fontFamily: "Almarai_Regular" }}>
+              مساعدة
+              </Text>
+           
+            </View>
             <View style={shadow.container}>
               <Text style={shadow.text}>الدوريات</Text>
             </View>
@@ -517,4 +498,12 @@ const styl = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  rowContainer1:{
+    borderRadius:12,
+    backgroundColor:Colors.BACKGROUND_4,
+    position:'relative',
+    flexDirection:'row-reverse',
+    paddingVertical:2.5,
+    alignItems:'center'
+  }
 });
