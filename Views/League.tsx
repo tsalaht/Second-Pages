@@ -37,8 +37,6 @@ export default function League() {
   const { width, height } = Dimensions.get("window");
   const dispatch = useDispatch();
   const [type, setType] = useState("دوريات عامة");
-  const [selectedMonth, setSelectedMonth] = useState("الشهر الحالي");
-  const [selectedWeek, setSelectedWeek] = useState<any>("الاسبوع الماضي");
   const renderContent = () => {
     switch (type) {
       case "دوريات عامة":

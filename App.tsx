@@ -26,8 +26,8 @@ export default function App() {
       <FontContext.Provider value={fontsLoaded}>
         <View style={styles.container}>
           <StatusBar style="auto" />
-          <League/>
-          {/* <Detials /> */}
+          {/* <League/> */}
+          <Detials />
         </View>
       </FontContext.Provider>
     </Provider>
