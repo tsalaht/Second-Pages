@@ -74,6 +74,7 @@ export default function Detials() {
       justifyContent: "center",
       borderTopEndRadius: 24,
       borderTopStartRadius: 24,
+      zIndex:999999
     },
   });
 

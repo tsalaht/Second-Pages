@@ -1,172 +1,131 @@
-import {
-    View,
-    Text,
-    ImageBackground,
-    StyleSheet,
-    Pressable,
-    Dimensions,
-  } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import styles from "../Views/Styles/Index";
-  import Colors from "../Colors";
-  import fonts from "../fonts";
-  import React, { useState } from "react";
-  import LinearButton2 from "../Components/linearButton2";
-  import {
+import Colors from "../Colors";
+import fonts from "../fonts";
+import Matches from "./Matches";
+import { useDispatch } from "react-redux";
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
+import Animated, { useAnimatedStyle, useSharedValue, withDecay } from 'react-native-reanimated';
 
-    ArrowRight2,
- User,
-  } from "iconsax-react-native";
-  import { SvgXml } from "react-native-svg";
-import { svgs } from "../Views/svg";
+export default function Plan() {
+  const dispatch = useDispatch();
+  const [type, setType] = useState("النهائي");
 
-  import { useDispatch } from "react-redux";
-import { icons } from "../Views/icons";
-  import { BlurView } from "expo-blur";
-  
-  export default function Plan() {
-    const { width, height } = Dimensions.get("window");
-    const dispatch = useDispatch();
-    const [type, setType] = useState("النهائي");
-    return (
-      <View style={{...styles.viewContainer}}>
-        <View style={{  paddingHorizontal:10}}>
-        <View
-            style={{
-              width: "100%",
-              backgroundColor: Colors.BACKGROUND_5,
-              padding: 8,
-              zIndex: 8,
-              marginTop: 8,
-              borderRadius: 16,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            
-            }}
-          >
+  // Shared values for scale and translations
+  const scale = useSharedValue(1);
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+
+  // Define pinch gesture
+  const pinchGesture = Gesture.Pinch()
+    .onUpdate((event) => {
+      scale.value = event.scale;
+    });
+
+  // Define pan gesture for horizontal and vertical movement
+  const panGesture = Gesture.Pan()
+    .onUpdate((event) => {
+      translateX.value = event.translationX;
+      translateY.value = event.translationY;
+    })
+    .onEnd((event) => {
+      if (event) {
+        // Use withDecay for smooth movement when the gesture ends
+        translateX.value = withDecay({ velocity: event.velocityX });
+        translateY.value = withDecay({ velocity: event.velocityY });
+      }
+    });
+
+  // Combine pinch and pan gestures
+  const combinedGesture = Gesture.Simultaneous(pinchGesture, panGesture);
+
+  // Animated style for zoom and pan effect
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { scale: scale.value },
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+    ],
+  }));
+
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={{ ...styles.viewContainer, zIndex: 200000000 }}>
+        <View style={{ paddingHorizontal: 10, width: '100%' }}>
+          <View style={styl.tabContainer}>
             <Pressable onPress={() => setType("ربع النهائي")}>
-              <View
-                style={[styl.tab, type === "ربع النهائي" && styl.selectedTab]}
-              >
-                <Text
-                  style={[
-                    styl.tabText,
-                    type === "ربع النهائي" && styl.selectedTabText,
-                  ]}
-                >
-        ربع النهائي
+              <View style={[styl.tab, type === "ربع النهائي" && styl.selectedTab]}>
+                <Text style={[styl.tabText, type === "ربع النهائي" && styl.selectedTabText]}>
+                  ربع النهائي
                 </Text>
               </View>
             </Pressable>
             <Pressable onPress={() => setType("نصف النهائي")}>
               <View style={[styl.tab, type === "نصف النهائي" && styl.selectedTab]}>
-                <Text
-                  style={[
-                    styl.tabText,
-                    type === "نصف النهائي" && styl.selectedTabText,
-                  ]}
-                >
-               نصف النهائي
+                <Text style={[styl.tabText, type === "نصف النهائي" && styl.selectedTabText]}>
+                  نصف النهائي
                 </Text>
               </View>
             </Pressable>
             <Pressable onPress={() => setType("النهائي")}>
-              <View
-                style={[styl.tab, type === "النهائي" && styl.selectedTab]}
-              >
-                <Text
-                  style={[
-                    styl.tabText,
-                    type === "النهائي" && styl.selectedTabText,
-                  ]}
-                >
-                النهائي
+              <View style={[styl.tab, type === "النهائي" && styl.selectedTab]}>
+                <Text style={[styl.tabText, type === "النهائي" && styl.selectedTabText]}>
+                  النهائي
                 </Text>
               </View>
             </Pressable>
           </View>
+
+          {/* Apply zoom and pan effect only to matchesContainer */}
+          <GestureDetector gesture={combinedGesture}>
+            <Animated.View style={[styl.matchesContainer, animatedStyle]}>
+              <Matches scenario={1} />
+              <Matches scenario={1} />
+              <Matches scenario={1} />
+            </Animated.View>
+          </GestureDetector>
         </View>
- 
-   
       </View>
-    );
-  }
-  
-  const styl = StyleSheet.create({
+    </GestureHandlerRootView>
+  );
+}
 
-    columContainer2:{
-      padding:8,
-      gap:4,
-      width: "100%",
-      flexDirection:'column',
-      backgroundColor:Colors.BACKGROUND_4,
-      borderRadius:16,
-      marginTop:8
-      
-      },
-      raduceContainer1:{
-        borderRadius:16,
-        backgroundColor:Colors.BACKGROUND_3,
-        padding:8,
-        flexDirection:'row-reverse',
-        alignItems:'center',
-        gap:8,
-      
-      },
-      rowContainer3:{
-        width:'100%',
-        justifyContent:'space-between',
-        flexDirection:'row-reverse',
-        alignItems:'center'
-      },
-      textContainer:{
-        paddingHorizontal:8,
-        paddingVertical:4,
-        borderRadius:4
-      },
-      textColers:{
-        fontFamily:fonts.almaraiBold,
-        fontSize:8
-      },
-      complex_row_col:{
-        paddingHorizontal:8,
-        paddingVertical:4,
-        borderRadius:12,
-        backgroundColor:Colors.BACKGROUND_3,
-        justifyContent:'space-between',
-        alignItems:'center'
-      },
-        rowContainer2:{
-          flexDirection:'row-reverse',
-          alignItems:'center',
-          width: "100%",
-          justifyContent:'space-between',
-        paddingHorizontal:4
-        },
-        tab: {
-          borderWidth: 1,
-          borderColor: "transparent",
-          paddingVertical: 8,
-          width: 104,
-          backgroundColor: Colors.BACKGROUND_4,
-          borderRadius: 28,
-          justifyContent: "center",
-          alignItems: "center",
-        },
-        selectedTab: {
-          backgroundColor: Colors.PRIMARY_600,
-        },
-        tabText: {
-          color: "white",
-          fontFamily: "Almarai_Regular",
-        },
-        selectedTabText: {
-          color:Colors.DEFAULT_WHITE,
-        },
-     
-
- 
-   
-    
-  });
-  
+const styl = StyleSheet.create({
+  tabContainer: {
+    width: "100%",
+    backgroundColor: Colors.BACKGROUND_5,
+    padding: 8,
+    zIndex: 8,
+    marginTop: 8,
+    borderRadius: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  matchesContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  tab: {
+    borderWidth: 1,
+    borderColor: "transparent",
+    paddingVertical: 8,
+    width: 104,
+    backgroundColor: Colors.BACKGROUND_4,
+    borderRadius: 28,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  selectedTab: {
+    backgroundColor: Colors.PRIMARY_600,
+  },
+  tabText: {
+    color: "white",
+    fontFamily: "Almarai_Regular",
+  },
+  selectedTabText: {
+    color: Colors.DEFAULT_WHITE,
+  },
+});
