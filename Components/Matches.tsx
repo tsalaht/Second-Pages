@@ -6,13 +6,11 @@ import { icons } from '../Views/icons';
 import fonts from '../fonts';
 import { Eye } from 'iconsax-react-native';
 
-
 interface DynamicComponentProps {
   scenario: 1 | 2 | 3;
 }
 
 const Matches: React.FC<DynamicComponentProps> = ({ scenario }) => {
-
   const endText = scenario === 1 ? "انتهت" : scenario === 2 ? "انتهت" : "ستبدأ قريباً";
   const endTextColor = scenario === 1 ? "white" : scenario === 2 ? Colors.PRIMARY_600 : "white";
   const scoreLeft = scenario === 3 ? 0 : 3;
@@ -20,9 +18,8 @@ const Matches: React.FC<DynamicComponentProps> = ({ scenario }) => {
   const backgroundColor = scenario === 3 ? Colors.BACKGROUND_4 : scenario === 2 ? "white" : Colors.SUCCESS_700;
 
   return (
-    <View style={styles.container}>
+    // <View style={styles.container}>
       <View style={styles.card}>
-
         <View style={styles.topRow}>
           <IconLabel label="Saad14" />
           <View style={styles.scoreContainer}>
@@ -35,7 +32,6 @@ const Matches: React.FC<DynamicComponentProps> = ({ scenario }) => {
           <IconLabel label="Saad14" />
         </View>
 
- 
         <View style={styles.middleRow}>
           <Circle backgroundColor={Colors.BACKGROUND_3} />
           <Text style={styles.middleRowText}>القهوات</Text>
@@ -49,30 +45,20 @@ const Matches: React.FC<DynamicComponentProps> = ({ scenario }) => {
           </View>
         )}
 
-        {/* Bottom Row */}
         <View style={styles.bottomRow}>
           <IconLabel label="Saad14" />
-          <View
-            style={[
-              styles.statusContainer,
-              { backgroundColor, borderRadius: scenario === 2 ? 1.6 : 11.17 }
-            ]}
-          >
+          <View style={[styles.statusContainer, { backgroundColor }]}>
             <Text style={[styles.statusText, { color: endTextColor }]}>{endText}</Text>
             {scenario === 2 && <Eye size="6.38" color={Colors.PRIMARY_600} />}
           </View>
           <IconLabel label="Saad14" />
         </View>
       </View>
-    </View>
+    // </View>
   );
 };
 
-interface IconLabelProps {
-  label: string;
-}
-
-const IconLabel: React.FC<IconLabelProps> = ({ label }) => (
+const IconLabel: React.FC<{ label: string }> = ({ label }) => (
   <View style={styles.iconLabelContainer}>
     <SvgXml xml={icons[0].eagle} />
     <View style={styles.iconLabelTextContainer}>
@@ -81,44 +67,30 @@ const IconLabel: React.FC<IconLabelProps> = ({ label }) => (
   </View>
 );
 
-
-interface ScoreBoxProps {
-  score: number;
-}
-
-
-const ScoreBox: React.FC<ScoreBoxProps> = ({ score }) => (
+const ScoreBox: React.FC<{ score: number }> = ({ score }) => (
   <View style={styles.scoreBox}>
     <Text style={styles.scoreText}>{score}</Text>
   </View>
 );
 
-// Define the props for Circle component
-interface CircleProps {
-  backgroundColor: string;
-}
-
-
-const Circle: React.FC<CircleProps> = ({ backgroundColor }) => (
+const Circle: React.FC<{ backgroundColor: string }> = ({ backgroundColor }) => (
   <View style={[styles.circle, { backgroundColor }]} />
 );
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-
     padding: 10,
     justifyContent: "center",
   },
   card: {
-    padding: 3.19,
+    padding: 5,
     backgroundColor: Colors.BACKGROUND_5,
-    borderRadius: 5,
-    alignSelf: "flex-start",
+    borderRadius: 8,
+    width: 90,
+    height: 75,
     justifyContent: "space-between",
     alignItems: "center",
-    width: 90,
-    height: 60.13,
   },
   topRow: {
     flexDirection: "row",
@@ -136,7 +108,7 @@ const styles = StyleSheet.create({
   },
   scoreRow: {
     flexDirection: "row",
-    gap: 0.8,
+    gap: 1,
   },
   middleRow: {
     flexDirection: 'row',
@@ -167,16 +139,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   statusContainer: {
-    width: 36.69,
-    height: 10.19,
+    width: 40,
+    height: 12,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
-    marginTop: 10,
+    paddingHorizontal: 5,
+    borderRadius: 10,
   },
   statusText: {
     fontFamily: fonts.almaraiRegular,
     fontSize: 4.79,
+    marginRight: 4,
   },
   iconLabelContainer: {
     position: "relative",
@@ -209,7 +183,7 @@ const styles = StyleSheet.create({
   circle: {
     width: 3.19,
     height: 3.19,
-    borderRadius: 9999999,
+    borderRadius: 9999,
   },
 });
 
