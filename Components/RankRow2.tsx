@@ -14,11 +14,11 @@ const RankRow2 = ({ name, rank, photoSvg }:RankRow2Props) => {
   return (
     <View style={styles.rankRow}>
       <View style={styles.pointsContainer}>
-        <View style={{ flexDirection: 'row', gap: 0.4, alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', gap: 4, alignItems: 'center' }}>
           <Text style={{ color: 'white', fontFamily: fonts.almaraiRegular, fontSize: 11.5 }}>
             0
           </Text>
-          <SvgXml xml={icons[0].startw}/>
+          <SvgXml xml={icons[0].star}/>
         </View>
       </View>
       <View style={styles.nameRankContainer}>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   pointsContainer: {
-    width: 85.5,
+    width: 66.65,
     borderRadius: 13.5,
     paddingVertical: 2,
     flexDirection: 'row-reverse',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     shadowOffset: { width: 0, height: 2 },
     elevation: 6,
-    backgroundColor: Colors.SECONDARY_700,
+    backgroundColor: Colors.BACKGROUND_3,
     paddingRight: 4,
   },
   nameRankContainer: {

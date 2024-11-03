@@ -25,6 +25,7 @@ import {
   import Plan from "../Components/Plan";
   import Adds from "../Components/Adds";
   import SeeFriends from "../Components/SeeFriends";
+  import Ranks from "../Components/Ranks";
   export default function Friends() {
     const [selectedTab, setSelectedTab] = useState<string>("adds"); 
     const isSelected = (tab:any) => selectedTab === tab;
@@ -37,7 +38,7 @@ import {
         case "friends":
           return <SeeFriends />;
         case "leaders":
-          return <Plan />;
+          return <Ranks />;
         default:
           return <Overview />;
       }
