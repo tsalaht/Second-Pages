@@ -11,14 +11,14 @@ interface DynamicComponentProps {
 }
 
 const Matches: React.FC<DynamicComponentProps> = ({ scenario }) => {
-  const endText = scenario === 1 ? "انتهت" : scenario === 2 ? "انتهت" : "ستبدأ قريباً";
+  const endText = scenario === 1 ? "انتهت" : scenario === 2 ? "شاهد" : "ستبدأ قريباً";
   const endTextColor = scenario === 1 ? "white" : scenario === 2 ? Colors.PRIMARY_600 : "white";
   const scoreLeft = scenario === 3 ? 0 : 3;
   const scoreRight = scenario === 3 ? 0 : 14;
   const backgroundColor = scenario === 3 ? Colors.BACKGROUND_4 : scenario === 2 ? "white" : Colors.SUCCESS_700;
-
+  const isLeftWinner = scoreLeft > scoreRight;
   return (
-    // <View style={styles.container}>
+ 
       <View style={styles.card}>
         <View style={styles.topRow}>
           <IconLabel label="Saad14" />
@@ -33,10 +33,10 @@ const Matches: React.FC<DynamicComponentProps> = ({ scenario }) => {
         </View>
 
         <View style={styles.middleRow}>
-          <Circle backgroundColor={Colors.BACKGROUND_3} />
-          <Text style={styles.middleRowText}>القهوات</Text>
-          <Circle backgroundColor={Colors.BACKGROUND_3} />
-        </View>
+        <Circle backgroundColor={scenario === 2 ? Colors.BACKGROUND_3 : (scenario !== 3 && isLeftWinner ? Colors.SUCCESS_600 : Colors.BACKGROUND_3)} />
+        <Text style={styles.middleRowText}>القهوات</Text>
+        <Circle backgroundColor={scenario === 2 ? Colors.BACKGROUND_3 : (scenario !== 3 && !isLeftWinner ? Colors.SUCCESS_600 : Colors.BACKGROUND_3)} />
+      </View>
 
         {scenario === 2 && (
           <View style={styles.viewCountRow}>
@@ -54,7 +54,7 @@ const Matches: React.FC<DynamicComponentProps> = ({ scenario }) => {
           <IconLabel label="Saad14" />
         </View>
       </View>
-    // </View>
+
   );
 };
 
@@ -76,6 +76,7 @@ const ScoreBox: React.FC<{ score: number }> = ({ score }) => (
 const Circle: React.FC<{ backgroundColor: string }> = ({ backgroundColor }) => (
   <View style={[styles.circle, { backgroundColor }]} />
 );
+
 
 const styles = StyleSheet.create({
   container: {
@@ -184,6 +185,7 @@ const styles = StyleSheet.create({
     width: 3.19,
     height: 3.19,
     borderRadius: 9999,
+
   },
 });
 

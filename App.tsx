@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import League from "./Views/League";
 import Detials from "./Views/Detials";
+import Friends from "./Views/Friends";
 import { Provider } from "react-redux";
 const FontContext = createContext(false);
 import { store } from "./Store/store";
@@ -27,7 +28,8 @@ export default function App() {
         <View style={styles.container}>
           <StatusBar style="auto" />
           {/* <League/> */}
-          <Detials />
+          {/* <Detials /> */}
+          <Friends />
         </View>
       </FontContext.Provider>
     </Provider>
