@@ -31,11 +31,11 @@ export default function App() {
         <View style={styles.container}>
           <StatusBar style="auto" />
           {/* <League/> */}
-          {/* <Detials /> */}
+          <Detials />
           {/* <Orders /> */}
           {/* <New /> */}
           {/* <Banded /> */}
-          <Profile />
+          {/* <Profile /> */}
           {/* <Friends /> */}
         </View>
       </FontContext.Provider>

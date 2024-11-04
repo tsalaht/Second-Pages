@@ -22,6 +22,7 @@ import { BlurView } from "expo-blur";
 import Overview from "../Components/Overview";
 import Chat from "../Components/Chat";
 import Plan from "../Components/Plan";
+import GradientText from "../Components/GradientText ";
 export default function Detials() {
   const [selectedTab, setSelectedTab] = useState<string>("overview"); 
   const isSelected = (tab:any) => selectedTab === tab;

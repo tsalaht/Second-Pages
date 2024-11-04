@@ -8,55 +8,58 @@ import { Eye } from 'iconsax-react-native';
 
 interface DynamicComponentProps {
   scenario: 1 | 2 | 3;
+  match: string;
 }
 
-const Matches: React.FC<DynamicComponentProps> = ({ scenario }) => {
+const Matches: React.FC<DynamicComponentProps> = ({ scenario, match }) => {
   const endText = scenario === 1 ? "انتهت" : scenario === 2 ? "شاهد" : "ستبدأ قريباً";
   const endTextColor = scenario === 1 ? "white" : scenario === 2 ? Colors.PRIMARY_600 : "white";
   const scoreLeft = scenario === 3 ? 0 : 3;
   const scoreRight = scenario === 3 ? 0 : 14;
   const backgroundColor = scenario === 3 ? Colors.BACKGROUND_4 : scenario === 2 ? "white" : Colors.SUCCESS_700;
   const isLeftWinner = scoreLeft > scoreRight;
-  return (
- 
-      <View style={styles.card}>
-        <View style={styles.topRow}>
-          <IconLabel label="Saad14" />
-          <View style={styles.scoreContainer}>
-            <Text style={styles.roundText}>ربع النهائي</Text>
-            <View style={styles.scoreRow}>
-              <ScoreBox score={scoreLeft} />
-              <ScoreBox score={scoreRight} />
-            </View>
-          </View>
-          <IconLabel label="Saad14" />
-        </View>
 
-        <View style={styles.middleRow}>
+  return (
+    <View style={styles.card}>
+      <View style={styles.topRow}>
+        <IconLabel label="Saad14" />
+        <View style={styles.scoreContainer}>
+          {/* Display the match prop dynamically */}
+          <Text style={styles.roundText}>{match}</Text>
+          <View style={styles.scoreRow}>
+            <ScoreBox score={scoreLeft} />
+            <ScoreBox score={scoreRight} />
+          </View>
+        </View>
+        <IconLabel label="Saad14" />
+      </View>
+
+      <View style={styles.middleRow}>
         <Circle backgroundColor={scenario === 2 ? Colors.BACKGROUND_3 : (scenario !== 3 && isLeftWinner ? Colors.SUCCESS_600 : Colors.BACKGROUND_3)} />
         <Text style={styles.middleRowText}>القهوات</Text>
         <Circle backgroundColor={scenario === 2 ? Colors.BACKGROUND_3 : (scenario !== 3 && !isLeftWinner ? Colors.SUCCESS_600 : Colors.BACKGROUND_3)} />
       </View>
 
-        {scenario === 2 && (
-          <View style={styles.viewCountRow}>
-            <Text style={styles.viewCountText}>5</Text>
-            <Eye size="4.79" color="#A6ABB3" />
-          </View>
-        )}
-
-        <View style={styles.bottomRow}>
-          <IconLabel label="Saad14" />
-          <View style={[styles.statusContainer, { backgroundColor }]}>
-            <Text style={[styles.statusText, { color: endTextColor }]}>{endText}</Text>
-            {scenario === 2 && <Eye size="6.38" color={Colors.PRIMARY_600} />}
-          </View>
-          <IconLabel label="Saad14" />
+      {scenario === 2 && (
+        <View style={styles.viewCountRow}>
+          <Text style={styles.viewCountText}>5</Text>
+          <Eye size="4.79" color="#A6ABB3" />
         </View>
-      </View>
+      )}
 
+      <View style={styles.bottomRow}>
+        <IconLabel label="Saad14" />
+        <View style={[styles.statusContainer, { backgroundColor }]}>
+          <Text style={[styles.statusText, { color: endTextColor }]}>{endText}</Text>
+          {scenario === 2 && <Eye size="6.38" color={Colors.PRIMARY_600} />}
+        </View>
+        <IconLabel label="Saad14" />
+      </View>
+    </View>
   );
 };
+
+
 
 const IconLabel: React.FC<{ label: string }> = ({ label }) => (
   <View style={styles.iconLabelContainer}>
