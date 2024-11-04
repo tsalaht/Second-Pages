@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-
+import Colors from "../../Colors";
 const styles = StyleSheet.create({
   viewContainer: {
     flexGrow: 1,
@@ -37,6 +37,12 @@ const styles = StyleSheet.create({
     fontSize: 32,
     textTransform: "capitalize",
     lineHeight: 50,
+  },
+  zoneRow:{
+    width:'100%',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between'
   },
 
   lightGrayText: {
@@ -102,6 +108,53 @@ const styles = StyleSheet.create({
     zIndex: 1,
     backgroundColor: '#000000d9',
   },
+  searchBox:{
+    width:'100%',
+    flexDirection:'row-reverse',
+    gap:4
+},
+searchInput:{
+    flex:1,
+    backgroundColor:Colors.BACKGROUND_4,
+    borderRadius:4,
+    paddingHorizontal:16,
+    paddingVertical:8
+},
+
+bigContainer:{
+    width:'100%',
+    borderRadius:16,
+    backgroundColor:Colors.BACKGROUND_5,
+    flex:0.98,paddingHorizontal:16,
+    paddingVertical:8
+},
+insideBigContainer:{
+    width:'100%',
+flex:1,
+alignItems:'center',
+justifyContent:'center'
+},
+conected2:{
+    width:'100%',
+    flexDirection:'row-reverse',
+    gap:4,
+    alignItems:'center',
+
+    
+},
+line:{
+    flex:1,
+    height:2,
+    backgroundColor:'white',
+    borderRadius:16,
+},
+insideBigContainer2: {
+  width: "100%",
+  flex: 1,
+flexDirection:'column',
+paddingTop:25,
+gap:16
+},
 });
 
 export default styles;

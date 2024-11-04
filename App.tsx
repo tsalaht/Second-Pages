@@ -8,7 +8,10 @@ import Friends from "./Views/Friends";
 import { Provider } from "react-redux";
 const FontContext = createContext(false);
 import { store } from "./Store/store";
-
+import Orders from "./Views/Orders";
+import New from "./Views/New";
+import Banded from "./Views/Banded";
+import Profile from "./Views/Profile";
 export const useFont = () => useContext(FontContext);
 
 export default function App() {
@@ -29,7 +32,11 @@ export default function App() {
           <StatusBar style="auto" />
           {/* <League/> */}
           {/* <Detials /> */}
-          <Friends />
+          {/* <Orders /> */}
+          {/* <New /> */}
+          {/* <Banded /> */}
+          <Profile />
+          {/* <Friends /> */}
         </View>
       </FontContext.Provider>
     </Provider>
