@@ -10,6 +10,9 @@ import styles from "./Styles/Index";
 import Colors from "../Colors";
 import fonts from "../fonts";
 import React, { useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from '@react-native-masked-view/masked-view';
+import GradientText from "../Components/GradientText ";
 import {
   ArrowRight2,
   SearchNormal1,
@@ -22,7 +25,6 @@ import { BlurView } from "expo-blur";
 import Overview from "../Components/Overview";
 import Chat from "../Components/Chat";
 import Plan from "../Components/Plan";
-import GradientText from "../Components/GradientText ";
 export default function Detials() {
   const [selectedTab, setSelectedTab] = useState<string>("overview"); 
   const isSelected = (tab:any) => selectedTab === tab;
@@ -109,15 +111,14 @@ export default function Detials() {
                 gap: 21.25,
               }}
             >
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontFamily: fonts.almaraiBold,
-                  color: Colors.PRIMARY_700,
-                }}
-              >
-                الأبطال
-              </Text>
+           <GradientText
+  text="الأبطال"
+  style={{
+    fontSize: 15, 
+    fontFamily: fonts.almaraiBold, 
+  }}
+/>
+
               <Text
                 style={{
                   fontSize: 20,

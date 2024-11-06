@@ -11,6 +11,7 @@ import styles from "../Views/Styles/Index";
   import fonts from "../fonts";
   import React, { useState } from "react";
   import LinearButton2 from "../Components/linearButton2";
+  import GradientText from "./GradientText ";
   import {
 
     ArrowRight2,
@@ -42,15 +43,13 @@ import { icons } from "../Views/icons";
   <View style={styl.columContainer2}>
   <View style={styl.rowContainer3}>
             <SvgXml xml={svgs[0].trophySmall}/>
-            <Text
-                  style={{
-                    fontSize: 15,
-                    fontFamily: fonts.almaraiBold,
-                    color: Colors.PRIMARY_700,
-                  }}
-                >
-                  الأبطال
-                </Text>
+            <GradientText
+  text="الأبطال"
+  style={{
+    fontSize: 15, 
+    fontFamily: fonts.almaraiBold, 
+  }}
+/>
                 <Text
                   style={{
                     fontSize: 20,

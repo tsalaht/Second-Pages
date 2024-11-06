@@ -7,6 +7,7 @@ import { svgs } from '../Views/svg';
 import { icons } from '../Views/icons';
 import LinearButton2 from './linearButton2';
 import LinearButton from './linearButton';
+import GradientText from './GradientText ';
 
 const Champions = () => {
   const [type, setType] = useState("البلاتينية");
@@ -20,7 +21,13 @@ const Champions = () => {
       </View>
       <View style={styles.champions}>
         <View style={styles.championRow}> 
-          <Text style={styles.championsText}>الأبطال</Text>
+        <GradientText
+  text="الأبطال"
+  style={{
+    fontSize: 15, 
+    fontFamily: fonts.almaraiBold, 
+  }}
+/>
           <Text style={styles.championsTextN}>45</Text>
           <SvgXml xml={svgs[0].trophySmall}/>
         </View>
@@ -108,7 +115,13 @@ const Champions = () => {
 </View>
           <SvgXml xml={svgs[0].trophySmall}/>
           <Text style={styles.championsTextN}>45</Text>
-<Text style={styles.championsText}>الأبطال</Text>
+          <GradientText
+  text="الأبطال"
+  style={{
+    fontSize: 15, 
+    fontFamily: fonts.almaraiBold, 
+  }}
+/>
 <View style={styles.raduceContainer1}>
 <Text style={{color:'white',fontFamily:fonts.almaraiBold,fontSize:14}}>
 نقطة تجمع

@@ -1,47 +1,34 @@
 import React from 'react';
-import { Text, TextStyle, View, ViewStyle } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Text } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
-
-interface GradientTextProps {
-  text: string;
-  fontSize?: number;
-  fontFamily?: string;
-  gradientColors: string[];
-  style?: ViewStyle | TextStyle; // Accept both View and Text styles
-}
-
-const GradientText: React.FC<GradientTextProps> = ({
-  text,
-  fontSize = 15,
-  fontFamily,
-  gradientColors,
-  style,
-}) => {
+import { LinearGradient } from 'expo-linear-gradient';
+import Colors from '../Colors';
+const GradientText  = (
+proops:any
+) => {
   return (
     <MaskedView
-      style={{ width: '100%', height: fontSize }} // Adjust width and height as needed
       maskElement={
         <Text
-          style={{
-            fontSize,
-            fontFamily,
-            color: 'transparent', // Hide the text color
-            textAlign: 'center', // Center the text if desired
-          }}
+        style={[proops.style]}
         >
-          {text}
+          {proops.text}
         </Text>
       }
     >
       <LinearGradient
-        colors={gradientColors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={{ flex: 1 }} // Fill the MaskedView
-      />
+        colors={['#FFFCA8',Colors.PRIMARY_600, '#FFAF36','#F1DC83']}
+      >
+        <Text
+          style={[proops.style,{opacity:0}]}
+        >
+          {proops.text}
+        </Text>
+      </LinearGradient>
     </MaskedView>
   );
 };
 
-export default GradientText;
+export default GradientText ;
