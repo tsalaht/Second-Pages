@@ -6,6 +6,7 @@ import League from "./Views/League";
 import Detials from "./Views/Detials";
 import Friends from "./Views/Friends";
 import { Provider } from "react-redux";
+import Frame from "./Views/Frame";
 const FontContext = createContext(false);
 import { store } from "./Store/store";
 import Orders from "./Views/Orders";
@@ -33,11 +34,12 @@ export default function App() {
         <View style={styles.container}>
           <StatusBar style="auto" />
           {/* <League/> */}
-          {/* <Detials /> */}
+          <Detials />
           {/* <Orders /> */}
           {/* <New /> */}
           {/* <Banded /> */}
-          <Profile />
+          {/* <Frame /> */}
+          {/* <Profile /> */}
           {/* <Friends /> */}
         </View>
         </GestureHandlerRootView>
