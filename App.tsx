@@ -13,6 +13,7 @@ import New from "./Views/New";
 import Banded from "./Views/Banded";
 import Profile from "./Views/Profile";
 export const useFont = () => useContext(FontContext);
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -28,16 +29,18 @@ export default function App() {
   return (
     <Provider store={store}>
       <FontContext.Provider value={fontsLoaded}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <View style={styles.container}>
           <StatusBar style="auto" />
           {/* <League/> */}
-          <Detials />
+          {/* <Detials /> */}
           {/* <Orders /> */}
           {/* <New /> */}
           {/* <Banded /> */}
-          {/* <Profile /> */}
+          <Profile />
           {/* <Friends /> */}
         </View>
+        </GestureHandlerRootView>
       </FontContext.Provider>
     </Provider>
   );

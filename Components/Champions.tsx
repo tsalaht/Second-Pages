@@ -33,26 +33,26 @@ const Champions = () => {
         </View>
 
         <View style={styles.rowContainer}>
-<View>
+<View style={{flexDirection:'column',gap:16}}>
 <Text style={{color:'#D4D5D6',fontSize:12,fontFamily:fonts.almaraiRegular}}>
 الجوائز
 </Text>
 <SvgXml xml={icons[0].start}/>
 </View>
           <View style={{flexDirection:'column-reverse',gap:4,backgroundColor:Colors.BACKGROUND_3,padding:8, borderRadius:16}}>
-<View style={{flexDirection:'row',}}>
+<View style={{flexDirection:'row',alignItems:'center'}}>
   <Text style={{color:'white',fontSize:10,fontFamily:fonts.almaraiBold}}>
   : 9 نقاط دوري
   </Text>
   <SvgXml xml={icons[0].bronze}/>
 </View>
-<View style={{flexDirection:'row',}}>
+<View style={{flexDirection:'row',alignItems:'center'}}>
   <Text style={{color:'white',fontSize:10,fontFamily:fonts.almaraiBold}}>
   : 4 نقاط دوري
   </Text>
   <SvgXml xml={icons[0].silver}/>
 </View>
-<View style={{flexDirection:'row',}}>
+<View style={{flexDirection:'row',alignItems:'center'}}>
   <Text style={{color:'white',fontSize:10,fontFamily:fonts.almaraiBold}}>
   : 2 نقاط دوري
   </Text>
@@ -129,22 +129,22 @@ const Champions = () => {
 </View>
 </View>
 <View style={{...styles.rowContainer3,backgroundColor:Colors.BACKGROUND_3,paddingHorizontal:20,paddingVertical:8,borderRadius:12}}>
-<View style={{...styles.textContainer,backgroundColor:Colors.SUCCESS_400}}>
+<View style={{...styles.textContainer,backgroundColor:Colors.SUCCESS_300}}>
 <Text style={{...styles.textColers,color:Colors.SUCCESS_600}}>
 جلسة ودية
 </Text>
 </View>
-<View style={{...styles.textContainer,backgroundColor:Colors.WARNING_400}}>
+<View style={{...styles.textContainer,backgroundColor:Colors.WARNING_300}}>
 <Text style={{...styles.textColers,color:Colors.WARNING_600}}>
 جلسة ثابتة
 </Text>
 </View>
-<View style={{...styles.textContainer,backgroundColor:Colors.SECONDARY_400}}>
+<View style={{...styles.textContainer,backgroundColor:Colors.SECONDARY_300}}>
 <Text style={{...styles.textColers,color:Colors.SECONDARY_600}}>
 جلسة سريعة جداً
 </Text>
 </View>
-<View style={{...styles.textContainer,backgroundColor:Colors.DANGER_400}}>
+<View style={{...styles.textContainer,backgroundColor:Colors.DANGER_300}}>
 <Text style={{...styles.textColers,color:Colors.DANGER_600}}>
 جلسة عامة
 </Text>
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
   tabContainer2: {
     width: "100%",
     backgroundColor: Colors.BACKGROUND_3,
-paddingVertical:8,
+paddingVertical:2,
     zIndex: 8,
     marginTop: 8,
     borderRadius: 16,
@@ -283,7 +283,7 @@ champions: {
   borderRadius:16,
   padding:8,
   position:'relative',
-  width: "52%",
+  width: "45%",
 },
 championRow: {
   flexDirection: 'row',
@@ -367,7 +367,6 @@ complex_row_col:{
   paddingVertical:4,
   borderRadius:12,
   flexDirection:'column',
-  gap:8,
   backgroundColor:Colors.BACKGROUND_3,
   justifyContent:'center',
   alignItems:'center'

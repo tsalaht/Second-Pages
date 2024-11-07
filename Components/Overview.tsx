@@ -88,22 +88,22 @@ import { icons } from "../Views/icons";
             </View>
   </View>
   <View style={{...styl.rowContainer3,paddingHorizontal:20,paddingVertical:8,borderRadius:12}}>
-  <View style={{...styl.textContainer,backgroundColor:Colors.SUCCESS_400}}>
+  <View style={{...styl.textContainer,backgroundColor:Colors.SUCCESS_300}}>
   <Text style={{...styl.textColers,color:Colors.SUCCESS_600}}>
   جلسة ودية
   </Text>
   </View>
-  <View style={{...styl.textContainer,backgroundColor:Colors.WARNING_400}}>
+  <View style={{...styl.textContainer,backgroundColor:Colors.WARNING_300}}>
   <Text style={{...styl.textColers,color:Colors.WARNING_600}}>
   جلسة ثابتة
   </Text>
   </View>
-  <View style={{...styl.textContainer,backgroundColor:Colors.SECONDARY_400}}>
+  <View style={{...styl.textContainer,backgroundColor:Colors.SECONDARY_300}}>
   <Text style={{...styl.textColers,color:Colors.SECONDARY_600}}>
   جلسة سريعة جداً
   </Text>
   </View>
-  <View style={{...styl.textContainer,backgroundColor:Colors.DANGER_400}}>
+  <View style={{...styl.textContainer,backgroundColor:Colors.DANGER_300}}>
   <Text style={{...styl.textColers,color:Colors.DANGER_600}}>
   جلسة عامة
   </Text>
