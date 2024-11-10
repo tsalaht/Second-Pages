@@ -13,12 +13,8 @@ import {
   import { icons } from "./icons";
   import {
     ArrowRight2,
-    Profile2User,
-    Message2,UserAdd,Rank
   } from "iconsax-react-native";
   import { SvgXml } from "react-native-svg";
-  import { svgs } from "./svg";
-  import { useDispatch } from "react-redux";
   import { BlurView } from "expo-blur";
   import Overview from "../Components/Overview";
   import Chat from "../Components/Chat";
@@ -28,7 +24,24 @@ import {
   import Ranks from "../Components/Ranks";
   export default function Friends() {
     const [selectedTab, setSelectedTab] = useState<string>("adds"); 
+    const getColoredIcon = (xmlString:any, color:any, isRankIcon = false) => {
+      if (isRankIcon) {
+        // For rank icon: change both stroke and fill
+        return xmlString
+          .replace(/stroke="[^"]*"/g, `stroke="${color}"`)
+          .replace(/fill="[^"]*"/g, `fill="${color}"`);
+      } else {
+        // For other icons: change only the stroke color
+        return xmlString.replace(/stroke="[^"]*"/g, `stroke="${color}"`);
+      }
+    };
     const isSelected = (tab:any) => selectedTab === tab;
+
+    const coloredAddIconXml = getColoredIcon(icons[0].addF, isSelected("adds") ? '#FFFFFF' : Colors.BACKGROUND_3);
+    const coloredChatIconXml = getColoredIcon(icons[0].chatT, isSelected("chats") ? '#FFFFFF' : Colors.BACKGROUND_3);
+    const coloredFriendsIconXml = getColoredIcon(icons[0].twof, isSelected("friends") ? '#FFFFFF' : Colors.BACKGROUND_3);
+    const coloredRankIconXml = getColoredIcon(icons[0].rank, isSelected("leaders") ? '#FFFFFF' : Colors.BACKGROUND_3, true);
+    
     const renderContent = () => {
       switch (selectedTab) {
         case "adds":
@@ -175,11 +188,7 @@ import {
                     alignItems: 'center',
                            justifyContent:'center'
                   }}>
-                    <UserAdd
-                      size="24"
-                      color={isSelected("adds") ? '#FFFFFF' : Colors.BACKGROUND_3}
-                     
-                    />
+                  <SvgXml xml={coloredAddIconXml} />
                     <Text style={{
                       color: isSelected("adds") ? '#FFFFFF' : Colors.BACKGROUND_3,
                       fontSize: 14,
@@ -201,10 +210,7 @@ import {
                     alignItems: 'center',
                            justifyContent:'center'
                   }}>
-                    <Message2
-                      size="24"
-                      color={isSelected("chats") ? '#FFFFFF' : Colors.BACKGROUND_3}
-                    />
+        <SvgXml xml={coloredChatIconXml} />
                     <Text style={{
                       color: isSelected("chats") ? '#FFFFFF' : Colors.BACKGROUND_3,
                       fontSize: 14,
@@ -225,10 +231,7 @@ import {
                     alignItems: 'center',
                     justifyContent:'center'
                   }}>
-                    <Profile2User
-                      size="24"
-                      color={isSelected("friends") ? '#FFFFFF' : Colors.BACKGROUND_3}
-                    />
+                           <SvgXml xml={coloredFriendsIconXml} />
                     <Text style={{
                       color: isSelected("friends") ? '#FFFFFF' : Colors.BACKGROUND_3,
                       fontSize: 14,
@@ -249,10 +252,8 @@ import {
                     alignItems: 'center',
                     justifyContent:'center'
                   }}>
-                    <Rank
-                      size="24"
-                      color={isSelected("leaders") ? '#FFFFFF' : Colors.BACKGROUND_3}
-                    />
+                
+                      <SvgXml xml={coloredRankIconXml} />
                     <Text style={{
                       color: isSelected("leaders") ? '#FFFFFF' : Colors.BACKGROUND_3,
                       fontSize: 14,

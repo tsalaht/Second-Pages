@@ -3,7 +3,7 @@ import Colors from "../../Colors";
 const styles = StyleSheet.create({
   viewContainer: {
     flexGrow: 1,
-// backgroundColor:'#131514',
+
     position: "relative",
     overflow: "visible",
   },

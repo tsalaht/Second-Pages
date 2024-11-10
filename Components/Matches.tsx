@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.almaraiRegular,
     fontSize: 5.58,
     color: "white",
+    marginBottom:3.19
   },
   scoreRow: {
     flexDirection: "row",
@@ -161,15 +162,21 @@ const styles = StyleSheet.create({
   },
   iconLabelTextContainer: {
     paddingHorizontal: 4.41,
-    paddingBottom: 3,
+    paddingBottom: 2,
     backgroundColor: "white",
     borderRadius: 4.2,
     position: "relative",
     top: -4,
+    elevation: 10, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 2, height: 2 }, 
+    shadowOpacity: 0.8, 
+    shadowRadius: 4,
   },
+  
   iconLabelText: {
     fontFamily: fonts.almaraiBold,
-    fontSize: 1.76,
+    fontSize: 2,
   },
   scoreBox: {
     width: 18,
@@ -188,6 +195,11 @@ const styles = StyleSheet.create({
     width: 3.19,
     height: 3.19,
     borderRadius: 9999,
+    elevation: 10, 
+    shadowColor: Colors.SUCCESS_600, 
+    shadowOffset: { width: 2, height: 2 }, 
+    shadowOpacity: 0.8, 
+    shadowRadius: 4,
 
   },
 });

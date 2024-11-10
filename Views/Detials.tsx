@@ -18,6 +18,7 @@ import {
   SearchNormal1,
   Message2,User,Data
 } from "iconsax-react-native";
+import { icons } from "./icons";
 import { SvgXml } from "react-native-svg";
 import { svgs } from "./svg";
 import { useDispatch } from "react-redux";
@@ -26,6 +27,12 @@ import Overview from "../Components/Overview";
 import Chat from "../Components/Chat";
 import Plan from "../Components/Plan";
 export default function Detials() {
+  const getColoredIcon = (xmlString:any, color:any) => {
+    return xmlString
+    // .replace(/fill="[^"]*"/g, `fill="${color}"`)
+    .replace(/stroke="[^"]*"/g, `stroke="${color}"`);
+  };
+  
   const [selectedTab, setSelectedTab] = useState<string>("overview"); 
   const isSelected = (tab:any) => selectedTab === tab;
   const renderContent = () => {
@@ -40,6 +47,8 @@ export default function Detials() {
         return <Overview />;
     }
   };
+  const coloredChatIconXml = getColoredIcon(icons[0].chatT, isSelected("chat") ? '#FFFFFF' : Colors.BACKGROUND_3);
+  const coloredPlanIconXml = getColoredIcon(icons[0].plan, isSelected("plan") ? '#FFFFFF' : Colors.BACKGROUND_3);
   const shadow = StyleSheet.create({
     // inside shadow
     container: {
@@ -176,11 +185,7 @@ export default function Detials() {
                   flexDirection: 'column',
                   alignItems: 'center'
                 }}>
-                  <Data
-                    size="24"
-                    color={isSelected("plan") ? '#FFFFFF' : Colors.BACKGROUND_3}
-                    style={{ transform: [{ rotate: '90deg' }] }}
-                  />
+                 <SvgXml xml={coloredPlanIconXml} />
                   <Text style={{
                     color: isSelected("plan") ? '#FFFFFF' : Colors.BACKGROUND_3,
                     fontSize: 14,
@@ -225,10 +230,7 @@ export default function Detials() {
                   flexDirection: 'column',
                   alignItems: 'center'
                 }}>
-                  <Message2
-                    size="24"
-                    color={isSelected("chat") ? '#FFFFFF' : Colors.BACKGROUND_3}
-                  />
+                        <SvgXml xml={coloredChatIconXml} />
                   <Text style={{
                     color: isSelected("chat") ? '#FFFFFF' : Colors.BACKGROUND_3,
                     fontSize: 14,

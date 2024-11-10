@@ -1,27 +1,44 @@
-import { View, Text,StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text,StyleSheet,Pressable,Alert  } from 'react-native'
+import React ,{useState}from 'react'
 import Colors from '../Colors'
 import fonts from '../fonts'
 import Mix from './Mix'
 import { SvgXml } from "react-native-svg";
-import { icons } from '../Views/icons'
+import { icons } from '../Views/icons';
+import * as Clipboard from 'expo-clipboard';
 const Adds = () => {
+  const [copyText, setCopyText] = useState<string>('SV4A8X');
+  const [showCopiedMessage, setShowCopiedMessage] = useState(false);
+
+  const handleCopyToClipboard = async () => {
+    await Clipboard.setStringAsync(copyText);
+    setShowCopiedMessage(true);
+    setTimeout(() => setShowCopiedMessage(false), 2000); // Hide message after 2 seconds
+  };
   return (
     <View style={{flex:1,paddingHorizontal:16,marginTop:8,flexDirection:'column',gap:8}}>
+      {showCopiedMessage && (
+        <View style={styles.copiedMessage}>
+          <Text style={styles.copiedText}>تم النسخ</Text>
+        </View>
+      )}
       <View style={styles.firstPart}>
 <Mix/>
 <View style={styles.insideContainer}>
 <Text style={{color:'white',fontSize:14,fontFamily:fonts.almaraiRegular}}>
 الكود الخاص بي
 </Text>
+<Pressable onPress={handleCopyToClipboard}>
 <View style={styles.copyContainer}>
 <View style={{borderRadius:9999999999999,backgroundColor:'white',padding:4}}>
 <SvgXml xml={icons[0].copy} />
 </View>
 <Text style={{color:'white',fontSize:14,fontFamily:fonts.almaraiBold}}>
-SV4A8X
+{copyText}
 </Text>
 </View>
+</Pressable>
+
 </View>
       </View>
       <View style={styles.secondPart}>
@@ -92,6 +109,21 @@ Saad14
   )
 }
 const styles = StyleSheet.create({
+  copiedMessage: {
+    position: 'absolute',
+    top: 20,
+    width: '100%',
+    alignItems: 'center',
+    zIndex: 1,
+  },
+  copiedText: {
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    color: 'white',
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    fontSize: 14,
+  },
 container:{
     width:'100%',
     flexDirection:'column',

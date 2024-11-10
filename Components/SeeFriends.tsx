@@ -8,6 +8,12 @@ import {
     SearchNormal1,Trash,MessageMinus
   } from "iconsax-react-native"
 const SeeFriends = () => {
+  const getColoredIcon = (xmlString:any, color:any, strokeColor:any) => {
+    let coloredXml = xmlString.replace(/fill="[^"]*"/g, `fill="${color}"`);
+    coloredXml = coloredXml.replace(/stroke="[^"]*"/g, `stroke="${strokeColor}"`);
+    return coloredXml;
+  };
+  const coloredIconXml = getColoredIcon(icons[0].chatT, 'white', Colors.SECONDARY_600);
   return (
     <View style={{flex:1,paddingHorizontal:16,marginTop:8,flexDirection:'column',gap:8}}>
     <View style={styles.searchBox}>
@@ -46,10 +52,10 @@ const SeeFriends = () => {
     <View style={styles.zoneRow}>
       <View style={{flexDirection:'row',alignItems:'center',gap:8}}>
       <View style={{width:32,height:32,backgroundColor:'white',alignItems:'center',justifyContent:'center',borderRadius:4}}>
-<Trash size="16" color={ Colors.DANGER_600}/>
+      <SvgXml xml={icons[0].trash} />
 </View>
 <View style={{width:32,height:32,backgroundColor:'white',alignItems:'center',justifyContent:'center',borderRadius:4}}>
-<MessageMinus size="16" color={ Colors.SECONDARY_600}/>
+<SvgXml xml={coloredIconXml} width={16} height={16} />
 </View>
 
 </View>
@@ -64,10 +70,10 @@ Saad14
     <View style={styles.zoneRow}>
       <View style={{flexDirection:'row',alignItems:'center',gap:8}}>
       <View style={{width:32,height:32,backgroundColor:'white',alignItems:'center',justifyContent:'center',borderRadius:4}}>
-<Trash size="16" color={ Colors.DANGER_600}/>
+      <SvgXml xml={icons[0].trash} />
 </View>
 <View style={{width:32,height:32,backgroundColor:'white',alignItems:'center',justifyContent:'center',borderRadius:4}}>
-<MessageMinus size="16" color={ Colors.SECONDARY_600}/>
+<SvgXml xml={coloredIconXml} width={16} height={16} />
 </View>
 
 </View>
